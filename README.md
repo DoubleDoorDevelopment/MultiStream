@@ -1,4 +1,4 @@
-# MultiStreame
+# MultiStream
 
 #### Version 0.1a
 
