@@ -1,0 +1,1 @@
+Edit the STREAMERS list to contain the Twitch names of the streams to poll.
