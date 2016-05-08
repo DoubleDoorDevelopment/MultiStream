@@ -1,4 +1,4 @@
-# MultiStreamer
+# MultiStreame
 
 #### Version 0.1a
 
