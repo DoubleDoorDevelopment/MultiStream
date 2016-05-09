@@ -11,14 +11,13 @@ def get_live():
     live_list = []
 
     streamers = [streamer for streamer in app.config['STREAMERS']]
+    filter_ = app.config['FILTER']
 
     urls = [('https://api.twitch.tv/kraken/streams/%s' % streamer) for streamer in streamers]
     headers = {'Accept': 'application/vnd.twitchtv.v3+json',
                'Client-ID': app.config['CLIENT_ID']}
     requests = (grequests.get(url, headers=headers) for url in urls)
     response = grequests.map(requests, exception_handler=exception_handler)
-
-    filter_ = app.config['FILTER']
 
     for i in response:
         for streamer in streamers:
@@ -33,8 +32,8 @@ def get_live():
 
     new_url = 'http://multistre.am/%s' % ('/'.join(user for user in live_list))
 
-    return jsonify({'live': live_list})
-    # return redirect(new_url)
+    # return jsonify({'live': live_list})
+    return redirect(new_url)
 
 def exception_handler(request, exception):
         return 'Error processing request'
