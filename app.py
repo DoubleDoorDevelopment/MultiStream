@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 @app.route('/')
-def get_live_list():
+def get_live():
 
     live_list = []
 
@@ -18,11 +18,20 @@ def get_live_list():
         url = 'https://api.twitch.tv/kraken/streams/%s' % streamer
         headers = {'Accept': 'application/vnd.twitchtv.v3+json'}
         r = requests.get(url, headers)
-        if r.json()['stream'] is not None:
-            live_list.append(streamer)
+        data = r.json()
+
+        if data['stream'] is not None:
+            filter_ = app.config['FILTER']
+            if filter_ is None:
+                live_list.append(streamer)
+            else:
+                if filter_ in data['stream']['channel']['status']:
+                    live_list.append(streamer)
+
 
     new_url = 'http://multistre.am/%s' % ('/'.join(user for user in live_list))
 
+    return jsonify({'live': live_list})
     return jsonify({'live': live_list})
     # return redirect(new_url)
 
