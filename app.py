@@ -2,7 +2,7 @@
 
 import requests
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, redirect
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -31,9 +31,8 @@ def get_live():
 
     new_url = 'http://multistre.am/%s' % ('/'.join(user for user in live_list))
 
-    return jsonify({'live': live_list})
-    return jsonify({'live': live_list})
-    # return redirect(new_url)
+    # return jsonify({'live': live_list})
+    return redirect(new_url)
 
 
 if __name__ == '__main__':
