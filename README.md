@@ -1,8 +1,8 @@
 # MultiStream
 
-#### Version 0.1a
+#### Version 1.0b1
 
-Flask app for fetching if Twitch streams are live, and if so redirecting to multistre.am for the live users.
+Flask app for fetching if selected Twitch streams are live, and if so redirecting to multistre.am for the live users.
 
 ## Setup
 
@@ -12,7 +12,7 @@ editing the `__init__.py` config file.
 ## Usage
 
 To run this app locally for testing purposes use the `run.py` file which enables debug. For server deployment I suggest
-using [uwsgi](http://uwsgi-docs.readthedocs.io/en/latest/) and using it to run `app.py` directly.
+using [uWSGI](http://uwsgi-docs.readthedocs.io/en/latest/) and using it to run `app.py` directly.
 
 To use this app, go to the url that you host this app on and it should redirect you to a multistre.am multistream for the 
 streamers that you have specified in the config file. Optionally, streamers in the list can be filtered by the url e.g.:
