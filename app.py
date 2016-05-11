@@ -6,12 +6,13 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 @app.route('/')
-def get_live():
+@app.route('/<string:filter_>')
+def get_live(filter_=''):
 
     live_list = []
 
     streamers = [streamer for streamer in app.config['STREAMERS']]
-    filter_ = app.config['FILTER']
+    # filter_ = app.config['FILTER']
 
     urls = [('https://api.twitch.tv/kraken/streams/%s' % streamer) for streamer in streamers]
     headers = {'Accept': 'application/vnd.twitchtv.v3+json',
@@ -27,23 +28,13 @@ def get_live():
             elif filter_ in data['stream']['channel']['status']:
                 live_list.append(streamers[index])
 
-        # for streamer in streamers:
-        #     data = i.json()
-        #     if data['stream'] is not None:
-        #         # if not filter_:
-        #         #     live_list.append(streamer)
-        #         # else:
-        #         #     if filter_ in data['stream']['channel']['status']:
-        #         live_list.append(streamer)
-
-
     new_url = 'http://multistre.am/%s' % ('/'.join(user for user in live_list))
 
     # return jsonify({'live': live_list})
     return redirect(new_url)
 
 def exception_handler(request, exception):
-        return 'Error processing request'
+        return 'Error processing request. Try refreshing.'
 
 
 if __name__ == '__main__':
