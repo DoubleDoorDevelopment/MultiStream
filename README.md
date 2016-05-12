@@ -1,6 +1,6 @@
 # MultiStream
 
-#### Version 1.0b1
+#### Version 1.0b2
 
 Flask app for fetching if selected Twitch streams are live, and if so redirecting to multistre.am for the live users.
 

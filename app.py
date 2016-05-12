@@ -5,7 +5,7 @@
 
 """Flask app for fetching if selected Twitch streams are live, and redirecting to multistre.am for the live streams.
 
-MulstiStream version 1.0b1
+MulstiStream version 1.0b2
 ==========================
 
 For complete documentation see README.md.
