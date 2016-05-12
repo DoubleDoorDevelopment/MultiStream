@@ -25,7 +25,6 @@ def get_live(filter_=''):
     live_list = []
 
     streamers = [streamer for streamer in app.config['STREAMERS']]
-    # filter_ = app.config['FILTER']
 
     urls = [('https://api.twitch.tv/kraken/streams/%s' % streamer) for streamer in streamers]
     headers = {'Accept': 'application/vnd.twitchtv.v3+json',
@@ -44,11 +43,8 @@ def get_live(filter_=''):
     new_url = 'http://multistre.am/%s' % ('/'.join(user for user in live_list))
 
     # return jsonify({'live': live_list})
-    return redirect(new_url)
+    return redirect(new_url, code=307)
+
 
 def exception_handler(request, exception):
         return 'Error processing request. Try refreshing.'
-
-
-if __name__ == '__main__':
-    app.run()
