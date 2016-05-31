@@ -5,7 +5,7 @@
 
 """Flask app for fetching if selected Twitch streams are live, and redirecting to multistre.am for the live streams.
 
-MulstiStream version 1.0b2
+MulstiStream version 1.0b3
 ==========================
 
 For complete documentation see README.md.
@@ -43,7 +43,7 @@ def get_live(filter_=''):
     new_url = 'http://multistre.am/%s' % ('/'.join(user for user in live_list))
 
     # return jsonify({'live': live_list})
-    return redirect(new_url, code=307)
+    return redirect(new_url, code=303)
 
 
 def exception_handler(request, exception):
